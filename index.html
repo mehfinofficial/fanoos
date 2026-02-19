@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fanoos</title>
+<link rel="manifest" href="manifest.json">
+
+<meta name="theme-color" content="#ffffff">
+
+<link rel="apple-touch-icon" sizes="180x180" href="logo/icon-192.png">
+
+<!-- iOS PWA Fix -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="white">
+
+<link rel="stylesheet" href="css/style.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- SPLASH SCREEN -->
+<div id="splashScreen" class="splash-screen">
+    <div class="splash-content">
+        <img id="splashLogo"
+             src="logo/Fanoosblack.png"
+             alt="Fanoos Logo">
+
+        <p class="splash-text">Light is Bright</p>
+
+
+
+        <div class="splash-loader"></div>
+        <p class="splash-version" id="splashVersion"></p>
+    </div>
+</div>
+
+
+<header class="app-header">
+    <div class="header-inner">
+
+        <div class="header-left">
+            <img src="logo/Fanoosblack.png"
+                 id="headerLogo"
+                 class="header-logo"
+                 alt="Fanoos Logo">
+        </div>
+
+        <h2 id="screenTitle">Dashboard</h2>
+
+    </div>
+</header>
+
+
+
+<main class="app-content">
+
+    <!-- DASHBOARD -->
+<section id="dashboardScreen" class="screen active">
+
+<div class="date-filters">
+    <button class="date-btn active" onclick="setDateFilter('today', this)">
+        Today
+    </button>
+    <button class="date-btn" onclick="setDateFilter('7days', this)">
+        Last 7 Days
+    </button>
+    <button class="date-btn" onclick="setDateFilter('30days', this)">
+        Last 30 Days
+    </button>
+</div>
+
+    <!-- HERO REVENUE -->
+    <div class="hero-card">
+        <p>Total Revenue (This Month)</p>
+        <h2 id="totalRevenue">₹0</h2>
+    </div>
+
+    <!-- LAST 7 DAYS CHART -->
+<div class="chart-card">
+    <h4>Last 7 Days Revenue</h4>
+
+    <div class="dashboard-weekly-chart" id="revenueChart">
+        <!-- JS will fill bars -->
+    </div>
+</div>
+
+
+    <!-- MAIN STATS -->
+    <div class="stats-grid">
+
+                <div class="stat-card">
+            <h3 id="todayNet">₹0</h3>
+            <p>Today's Net</p>
+        </div>
+
+<div class="stat-card">
+    <h3 id="productsSoldToday">0</h3>
+    <p>Products Sold</p>
+</div>
+
+        <div class="stat-card">
+            <h3 id="totalProfit">₹0</h3>
+            <p>Monthly Profit</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="monthlyNet">₹0</h3>
+            <p>Monthly Net</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="totalProducts">0</h3>
+            <p>Total Products</p>
+        </div>
+
+        <div class="stat-card">
+            <h3 id="lowStockCount">0</h3>
+            <p>Low Stock</p>
+        </div>
+
+
+
+
+
+    </div>
+
+    <!-- TODAY BREAKDOWN -->
+    <div class="breakdown-card">
+        <h4>Today's Breakdown</h4>
+        <div class="break-row">
+            <span>Revenue</span>
+            <span id="todayRevenueValue">₹0</span>
+        </div>
+        <div class="break-row">
+            <span>Cash</span>
+            <span id="cashValue">₹0</span>
+        </div>
+        <div class="break-row">
+            <span>UPI</span>
+            <span id="upiValue">₹0</span>
+        </div>
+        <div class="break-row total">
+            <span>Profit</span>
+            <span id="profitValue">₹0</span>
+        </div>
+    </div>
+
+<div class="action-card">
+    <div>
+        <h4>Daily Report</h4>
+        <p>Generate and print today's summary</p>
+    </div>
+
+    <button class="primary-btn"
+        onclick="printDailyReport()">
+        Print
+    </button>
+</div>
+
+
+    <div id="lowStockPanel" style="margin-top:20px;"></div>
+
+</section>
+
+
+    <!-- PRODUCTS -->
+    <section id="productsScreen" class="screen">
+        
+<div class="products-header">
+      <div class="products-top">
+
+    <div class="products-actions">
+<button class="products-btn add-btn"
+    onclick="openInventoryModal()">
+    + Inventory Management
+</button>
+
+    </div>
+
+    <input type="text"
+        id="productSearch"
+        placeholder="Search products..."
+        oninput="renderProducts()" />
+
+</div>
+
+
+        <div class="section-top">
+
+            
+
+     
+    
+        </div>
+
+
+        <div id="productsList"></div>
+    </section>
+
+
+
+
+
+
+
+<!-- SALE MODAL -->
+<!-- SALE OVERLAY -->
+<div id="saleOverlay" class="sale-overlay">
+
+    <div id="saleSheet" class="sale-sheet">
+
+<div class="sale-header">
+    <h3 class="sale-title">
+
+
+<svg class="sale-title-icon"  aria-hidden="true" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24">
+  <path fill-rule="evenodd" d="M2 6a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6Zm4.996 2a1 1 0 0 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM11 8a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-6Zm-4.004 3a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM11 11a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-6Zm-4.004 3a1 1 0 1 0 0 2h.01a1 1 0 1 0 0-2h-.01ZM11 14a1 1 0 1 0 0 2h6a1 1 0 1 0 0-2h-6Z" clip-rule="evenodd"/>
+</svg>
+
+    New Sale
+</h3>
+
+    <button class="sheet-close"
+            onclick="closeSaleSheet()">
+        Cancel
+    </button>
+</div>
+
+
+<div class="sale-content">
+
+<div class="sale-section search-wrapper">
+    <input type="text" id="customerName" placeholder="Customer Name">
+    <div id="customerSuggestions" class="suggestions-box"></div>
+</div>
+
+<div class="sale-section">
+    <input type="text" id="customerPhone" placeholder="Customer Phone">
+</div>
+
+
+<div class="sale-section search-wrapper">
+
+    <input type="text"
+           id="saleProductSearch"
+           placeholder="Search product..."
+           autocomplete="off"
+           oninput="searchProducts()" />
+
+    <div id="productSuggestions"
+         class="suggestions-box"></div>
+
+</div>
+
+<div class="sale-section sale-add-row">
+    <input type="number"
+           id="saleQuantity"
+           placeholder="Qty">
+
+           <div class="qty-chips">
+    <span onclick="setQuickQty(1)">1</span>
+    <span onclick="setQuickQty(2)">2</span>
+    <span onclick="setQuickQty(5)">5</span>
+    <span onclick="setQuickQty(10)">10</span>
+</div>
+
+
+<button class="sale-btn sale-add-btn"
+        onclick="addToCart()">
+    Add Item
+</button>
+
+</div>
+
+
+    <div class="cart-wrapper">
+    <div id="cartList" class="cart-list"></div>
+</div>
+
+
+    
+<select id="paymentMethod">
+
+    <option value="Cash">Cash</option>
+    <option value="UPI">UPI</option>
+</select>
+
+<div class="discount-row">
+
+    <select id="discountType">
+    <option value="amount">Amount</option>
+    <option value="percent">%</option>
+</select>
+
+    <input type="number"
+           id="saleDiscount"
+           placeholder="Discount Amount">
+
+<button class="sale-btn sale-apply-btn"
+        onclick="renderCart()">
+    Apply
+</button>
+
+</div>
+
+
+    <div class="sale-footer">
+<div class="sale-summary">
+
+    <div class="summary-top">
+        <span class="invoice-label">
+            Invoice: <strong id="saleInvoiceNumber">INV-1</strong>
+        </span>
+    </div>
+
+    <p>Subtotal: ₹<span id="saleSubtotal">0</span></p>
+    <p>Total: ₹<span id="saleTotal">0</span></p>
+
+</div>
+
+
+        <button class="complete-btn" onclick="saveSale()">
+            Complete Sale
+        </button>
+    </div>
+
+</div>
+
+
+    </div>
+
+</div>
+
+
+
+    <!-- SALES -->
+<section id="salesScreen" class="screen">
+    <div class="section-top">
+       
+    </div>
+
+<input type="text"
+       id="salesSearch"
+       class="search-input"
+       placeholder="Search ledger..."
+       oninput="renderSales()" />
+
+
+
+    <div id="salesList"></div>
+</section>
+
+<!-- VIEW SALE MODAL -->
+<!-- CUSTOM INVOICE OVERLAY -->
+<div id="invoiceOverlay" class="invoice-overlay">
+
+    <div class="invoice-sheet">
+
+        <div class="invoice-topbar">
+            <div>
+                <div class="invoice-title">Invoice</div>
+                <div id="invoiceNumberLabel" class="invoice-id"></div>
+            </div>
+
+            <button class="invoice-close"
+                onclick="closeInvoiceSheet()">
+                Close
+            </button>
+        </div>
+
+        <div id="invoiceDetails"
+             class="invoice-content">
+        </div>
+
+        <div class="invoice-footer">
+
+            <button class="invoice-btn whatsapp"
+                onclick="sendInvoiceWhatsApp()">
+                WhatsApp
+            </button>
+
+            <button class="invoice-btn delete"
+                onclick="deleteSale()">
+                Delete
+            </button>
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- CUSTOMERS -->
+<section id="customersScreen" class="screen">
+
+    <input type="text" 
+           id="customerSearch" 
+           placeholder="Search customers..." 
+           style="margin-bottom:15px; width:100%;">
+
+    <div id="customersList"></div>
+
+</section>
+
+
+    <!-- SETTINGS -->
+    <section id="settingsScreen" class="screen">
+        <div class="settings-card">
+            <h4>Appearance</h4>
+            <div class="theme-row">
+                <span>Dark Mode</span>
+                <label class="switch">
+                    <input type="checkbox" id="themeToggle">
+                    <span class="slider"></span>
+                </label>
+            </div>
+        </div>
+
+        <div class="settings-card">
+            <h4>Backup</h4>
+            <button onclick="exportData()">Export Data</button>
+            <input type="file" id="importFile" hidden>
+            <button onclick="document.getElementById('importFile').click()">Import Data</button>
+        </div>
+    </section>
+
+</main>
+
+<nav class="bottom-nav">
+
+    <!-- Dashboard -->
+    <button class="nav-item active"
+        onclick="switchScreen('dashboardScreen','Dashboard'); setActive(this)">
+        <svg viewBox="0 0 24 24">
+            <path d="M3 13h8V3H3v10zm10 8h8V3h-8v18zM3 21h8v-6H3v6z"/>
+        </svg>
+        <span>Dashboard</span>
+    </button>
+
+    <!-- Products -->
+    <button class="nav-item"
+        onclick="switchScreen('productsScreen','Products'); setActive(this)">
+        <svg viewBox="0 0 24 24">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+        </svg>
+        <span>Products</span>
+    </button>
+
+    <!-- Floating Add -->
+    <button class="nav-add"
+        onclick="startNewSale()">
+        +
+    </button>
+
+    <!-- Ledger (Sales) -->
+    <button class="nav-item"
+        onclick="switchScreen('salesScreen','Ledger'); setActive(this)">
+        <svg viewBox="0 0 24 24">
+            <path d="M4 4h16v16H4zM8 8h8M8 12h8M8 16h5"/>
+        </svg>
+        <span>Ledger</span>
+    </button>
+
+    <!-- Profile -->
+    <button class="nav-item"
+        onclick="switchScreen('settingsScreen','Profile'); setActive(this)">
+        <svg viewBox="0 0 24 24">
+            <path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-4 0-8 2-8 6h16c0-4-4-6-8-6z"/>
+        </svg>
+        <span>Profile</span>
+    </button>
+
+</nav>
+
+
+<!-- PRODUCT MODAL -->
+<div id="productModal" class="modal hidden">
+    <div class="modal-card">
+        <h3 id="modalTitle">Add Product</h3>
+        <p class="modal-subtitle">
+    Manage stock and product details
+</p>
+
+
+<!-- Product Name -->
+<div class="form-row column">
+    
+
+    <div class="search-wrapper">
+        <input type="text"
+               id="inventoryName"
+               placeholder="Search or enter product..."
+               autocomplete="off"
+               oninput="searchInventoryProducts()">
+
+        <div id="inventorySuggestions"
+             class="suggestions-box"></div>
+    </div>
+</div>
+
+<!-- Existing Info Card -->
+<div id="inventoryExistingInfo"
+     class="inventory-info-card"
+     style="display:none;">
+</div>
+
+<div id="inventoryCreateFields">
+<div class="form-row">
+    <label>Category</label>
+    <input type="text" id="productCategory">
+</div>
+
+<div class="form-row">
+    <label>Brand</label>
+    <input type="text" id="productBrand">
+</div>
+
+<div class="form-row">
+    <label>Watt</label>
+    <input type="text" id="productWatt">
+</div>
+
+
+<div class="form-row">
+    <label>Min Stock</label>
+    <input type="number" id="productMinStock">
+</div>
+</div>
+<div class="form-row">
+    <label id="stockLabel">Initial Stock</label>
+
+    <input type="number" id="productStock">
+</div>
+
+<div class="form-row">
+    <label>Purchase Price</label>
+    <input type="number" id="productPurchasePrice">
+</div>
+
+<div class="form-row">
+    <label>Selling Price</label>
+    <input type="number" id="productSellingPrice">
+</div>
+
+
+        <div class="modal-actions premium-actions">
+    <button class="modal-btn cancel-btn"
+            onclick="closeProductModal()">
+        Cancel
+    </button>
+
+    <button class="modal-btn save-btn"
+            onclick="saveInventory()">
+        Save Product
+    </button>
+</div>
+
+    </div>
+</div>
+
+
+<!-- SALE SUCCESS OVERLAY -->
+<div id="saleSuccessOverlay" class="success-overlay hidden">
+    <div class="success-card">
+
+        <div class="success-icon">
+<svg class="success-svg" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M13.333 4L6 11.333 2.667 8"/>
+</svg>
+
+</div>
+
+
+        <h3>Sale Completed</h3>
+        <p>Invoice saved successfully</p>
+
+        <div class="success-actions">
+            <button class="success-btn outline"
+                onclick="closeSuccessOverlay()">
+                OK
+            </button>
+
+            <button class="success-btn primary"
+                onclick="sendInvoiceWhatsApp(); closeSuccessOverlay();">
+                Send WhatsApp
+            </button>
+        </div>
+
+    </div>
+</div>
+<script src="js/storage.js"></script>
+<script src="js/app.js"></script>
+
+
+<script>
+if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js")
+        .then(() => console.log("SW Registered"));
+}
+</script>
+
+</body>
+</html>

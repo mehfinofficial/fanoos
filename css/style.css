@@ -1,0 +1,2077 @@
+:root {
+    --bg: #f3f4f8;
+    --card: #ffffff;
+    --text: #0f172a;
+    --accent: #2563eb;
+    --border: #e2e8f0;
+}
+
+body[data-theme="dark"] {
+    --bg: #121212;              /* main background */
+    --card: #1e1e1e;            /* card surface */
+    --text: #f5f5f5;            /* primary text */
+    --accent: #3b82f6;          /* keep your blue accent */
+    --border: rgba(255,255,255,0.08);
+}
+
+
+
+/* Dark Mode */
+body[data-theme="dark"] .app-header {
+     background: rgba(30,30,30,0.85);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+
+
+body[data-theme="dark"] .bottom-nav {
+    background: rgba(30,30,30,0.85);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Remove blue tap highlight */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+button {
+    outline: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+}
+
+.app-header {
+    padding: 20px;
+    text-align: center;
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+
+.app-content {
+    padding: 20px;
+    padding-bottom: 100px;
+}
+
+.screen {
+    display: none;
+}
+
+.screen.active {
+    display: block;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.stat-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+    text-align: center;
+}
+
+.section-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    width: 60%;
+}
+
+button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+
+
+.settings-card {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+.theme-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Toggle */
+.switch {
+    position: relative;
+    width: 50px;
+    height: 26px;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    inset: 0;
+    background: #ccc;
+    border-radius: 34px;
+}
+
+.slider:before {
+    content: "";
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left: 3px;
+    top: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.switch input:checked + .slider {
+    background: var(--accent);
+}
+
+.switch input:checked + .slider:before {
+    transform: translateX(24px);
+}
+
+
+
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-card {
+    background: var(--card);
+    height: 100%;
+    width: 100%;
+    /*border-radius: 24px;*/
+
+    padding: 20px 28px 28px 28px;  /* 🔥 more space on top */
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;   /* slightly more vertical spacing */
+     overflow-y: auto; 
+}
+
+.modal {
+    align-items: flex-start;
+    padding-top: 0px;
+}
+
+
+.modal-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.secondary {
+    background: #ccc;
+    color: #000;
+}
+
+
+.modal-card.large {
+    max-width: 600px;
+}
+
+.sale-add-row {
+    display: flex;
+    gap: 8px;
+}
+
+.sale-add-row select {
+    flex: 2;
+}
+
+.sale-add-row input {
+    flex: 1;
+}
+
+
+
+.cart-item {
+    background: var(--bg);
+    padding: 8px;
+    border-radius: 8px;
+    margin-bottom:0px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sale-summary {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+
+/* ================= LIQUID GLASS HEADER ================= */
+
+.app-header {
+    position: sticky;
+    top: 12px;
+    z-index: 100;
+
+    width: 94%;
+    max-width: 520px;
+    margin: 0 auto 16px auto;
+    padding: 14px 18px;
+
+    border-radius: 22px;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    box-shadow: 0 10px 30px rgba(15,23,42,0.08);
+}
+
+
+
+.header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;   /* 🔥 better layout */
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-logo {
+    height: 38px;
+}
+
+#screenTitle {
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+/* ================= FLOATING NAV ================= */
+
+.bottom-nav {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    max-width: 520px;
+    height: 70px;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.6);
+    border-radius: 22px;
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+    z-index: 1000;
+    transition: transform 0.3s cubic-bezier(.22,.9,.35,1);
+
+}
+
+/* Hide nav when sale open */
+.bottom-nav.hidden-nav {
+    transform: translate(-50%, 120%);
+}
+
+
+
+
+.nav-item {
+    flex: 1;                     /* 🔥 equal width */
+    background: none;
+    border: none;
+    color: var(--secondary-text);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap:0px;
+    font-size: 10px;
+    font-weight: 500;
+
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.nav-item svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 1.8;
+}
+
+.nav-item.active {
+    color: var(--accent);
+}
+
+.nav-add {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+
+    background: #2563eb;   /* Soft Blue */
+    color: #ffffff;
+
+    border: none;
+    font-size: 28px;
+    font-weight: 400;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+
+    transition: 0.2s ease;
+}
+
+.nav-add:hover {
+    transform: scale(1.05);
+}
+
+.nav-add:active {
+    transform: scale(0.95);
+}
+
+/* ================= DASHBOARD PREMIUM ================= */
+
+.hero-card {
+    background: var(--card);
+    border-radius: 22px;
+    padding: 24px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.04);
+}
+
+.hero-card p {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 6px;
+}
+
+body[data-theme="dark"] .hero-card p  {
+    color:white ;
+}
+
+
+.hero-card h2 {
+    font-size: 30px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.chart-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.chart-card h4 {
+    font-size: 14px;
+    margin-bottom: 16px;
+}
+
+
+.breakdown-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 18px;
+    margin-top: 18px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+}
+
+.break-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    font-size: 13px;
+}
+
+.break-row.total {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+    font-weight: 600;
+}
+
+.dashboard-weekly-chart {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    height: 140px;        /* slightly taller */
+    padding-bottom: 20px; /* 🔥 space for labels */
+    margin-top: 10px;
+}
+
+
+
+
+.dashboard-bar span {
+    display: block;
+    width: 100%;
+    border-radius: 6px 6px 0 0;
+    background: linear-gradient(180deg,#3b82f6,#2563eb);
+    height: 5px;
+    transition: height 0.4s ease;
+}
+
+.dashboard-bar::after {
+    content: attr(data-day);
+    position: absolute;
+    bottom: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 10px;
+    opacity: 0.6;
+}
+.dashboard-bar {
+    flex: 1;
+    margin: 0 4px;
+    display: flex;
+    align-items: flex-end;
+    position: relative;
+    height: 100%;   /* 🔥 ADD THIS */
+}
+
+.stat-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: left;
+    transition: 0.25s ease;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+}
+
+.stat-card h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: var(--text);
+}
+
+.stat-card p {
+    font-size: 12px;
+    color: #64748b;
+}
+
+body[data-theme="dark"] .stat-card p  {
+    color:gray ;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+/* ================= DATE FILTERS ================= */
+
+.date-filters {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.date-btn {
+    padding: 6px 14px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--accent);
+    font-size: 12px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.date-btn.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+.date-btn:hover {
+    opacity: 0.9;
+}
+
+body[data-theme="dark"] .date-btn {
+    color:white ;
+}
+
+/* ================= ACTION CARD ================= */
+
+.action-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 18px;
+    margin-top: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    border: 1px solid var(--border);
+}
+
+.action-card h4 {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.action-card p {
+    font-size: 12px;
+    color: #64748b;
+}
+
+body[data-theme="dark"] .action-card p {
+    color:gray ;
+}
+
+.primary-btn {
+    padding: 10px 30px;
+    border-radius: 16px;
+    border: none;
+
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    color: white;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+    transform: translateY(-2px);
+}
+
+.primary-btn:active {
+    transform: scale(0.95);
+}
+
+
+/* ================= STOCK ALERT ================= */
+
+.stock-card {
+    margin-top: 18px;
+    border-radius: 20px;
+    padding: 18px;
+    font-size: 13px;
+    border: 1px solid var(--border);
+}
+
+.stock-card.success {
+    background: rgba(34,197,94,0.08);
+    color: #15803d;
+}
+
+.stock-card.warning {
+    background: rgba(239,68,68,0.08);
+    color: #b91c1c;
+}
+
+.stock-card h4 {
+    margin-bottom: 10px;
+}
+
+.stock-card ul {
+    padding-left: 18px;
+}
+
+/* ================= PRODUCTS HEADER ================= */
+
+.products-header {
+    margin-bottom:0px;
+}
+
+#productSearch {
+    
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    font-size: 14px;
+    outline: none;
+}
+
+#productSearch:focus {
+    border-color: var(--accent);
+}
+
+.product-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 18px;
+    margin-bottom: 14px;
+
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.04);
+
+    transition: 0.25s ease;
+}
+
+
+.product-card:hover {
+    transform: translateY(-3px);
+}
+
+.product-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.product-card strong {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.product-card p {
+    font-size: 13px;
+    margin-bottom: 6px;
+}
+
+
+.product-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+}
+
+.product-meta {
+    font-size: 12px;
+    color: #64748b;
+}
+
+.product-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stock-badge {
+    padding: 8px 16px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stock-normal {
+    background: rgba(34,197,94,0.1);
+    color: #15803d;
+}
+
+.stock-low {
+    background: rgba(239,68,68,0.1);
+    color: #b91c1c;
+}
+
+.stock-out {
+    background: rgba(127,29,29,0.15);
+    color: #7f1d1d;
+}
+
+/* ================= PRODUCT ACTION PILLS ================= */
+
+
+
+.pill-btn {
+    flex: 1;                    /* equal width */
+    padding: 12px 0;
+    border-radius: 28px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.pill-btn.primary {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    color: white;
+}
+
+.pill-btn.secondary {
+    background: rgba(37,99,235,0.08);
+    color: #2563eb;
+    border: 1px solid rgba(37,99,235,0.2);
+    padding: 12px 0;
+    border-radius: 28px;
+}
+
+.pill-btn:hover {
+    transform: translateY(-2px);
+}
+
+.pill-btn:active {
+    transform: scale(0.96);
+}
+
+.product-actions button {
+    padding: 6px 14px;
+    font-size: 14px;
+    border-radius: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Edit */
+.product-actions button:first-child {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+/* Delete */
+.product-actions button:last-child {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.product-actions button:hover {
+    transform: translateY(-2px);
+}
+
+.product-price {
+    font-weight: 700;
+    font-size: 18px;   /* 🔥 bigger */
+    color: var(--accent);
+    margin-top: 8px;
+}
+
+.product-row p {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* ================= PRODUCTS TOP SECTION ================= */
+
+
+
+/* ================= PRODUCT ACTION BUTTONS ================= */
+
+.product-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.product-actions button {
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* EDIT BUTTON */
+.product-actions button:first-child {
+    background: rgba(59,130,246,0.12);
+    color: #3b82f6;
+    border: 1px solid rgba(59,130,246,0.25);
+}
+
+/* DELETE BUTTON */
+.product-actions button:last-child {
+    background: rgba(239,68,68,0.12);
+    color: #ef4444;
+    border: 1px solid rgba(239,68,68,0.25);
+}
+
+/* Hover Effects */
+.product-actions button:hover {
+    transform: translateY(-2px);
+}
+
+.product-actions button:active {
+    transform: scale(0.95);
+}
+
+/* Add Button (Primary) */
+.add-btn {
+    background: linear-gradient(135deg,#2563eb,#1e40af);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.20);
+}
+
+.add-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(37,99,235,0.45);
+}
+
+/* Purchase Button (Soft Glass) */
+.purchase-btn {
+    background: rgba(37,99,235,0.08);
+    color: #1d4ed8;
+    border: 1px solid rgba(37,99,235,0.25);
+}
+
+.purchase-btn:hover {
+    background: rgba(37,99,235,0.15);
+}
+
+.products-btn:active {
+    transform: scale(0.96);
+}
+
+
+/* ================= SALE BOTTOM SHEET ================= */
+
+/* ================= SIMPLE SALE PAGE ================= */
+
+.sale-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    background: transparent; /* no overlay */
+    opacity: 0;
+    pointer-events: none;
+
+    transition: opacity 0.2s ease;
+}
+
+.sale-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Full clean sheet */
+.sale-sheet {
+    width: 100%;
+    max-width: 520px;
+    height: 100%;
+
+    background:var(--card); /* use main background */
+
+    border-radius: 0; /* remove modal look */
+
+    transform: translateY(100%);
+    transition: transform 0.25s ease;
+
+    overflow-y: auto;
+}
+
+/* Slide up */
+.sale-overlay.active .sale-sheet {
+    transform: translateY(0);
+}
+
+
+.sheet-handle {
+    width: 50px;
+    height: 5px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 10px;
+    margin: 12px auto;
+}
+
+body[data-theme="dark"] .sheet-handle {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ================= SALE LAYOUT ================= */
+
+.sale-content {
+    padding: 0px 18px 100px 18px;
+}
+
+.sale-section {
+    
+    margin-top: 10px;
+}
+
+.sale-content input,
+.sale-content select {
+    width: 100%;
+    padding: 14px 16px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-size: 14px;
+    transition: 0.2s ease;
+    margin-top: 5px;
+}
+
+.sale-content input::placeholder {
+    color: #9ca3af;
+    font-weight: 500;
+}
+
+.sale-content input:focus,
+.sale-content select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(37,99,235,0.15);
+    outline: none;
+}
+
+
+/* Add Row */
+.sale-add-row {
+    display: flex;
+    gap: 10px;
+}
+
+.sale-add-row select {
+    flex: 2;
+}
+
+.sale-add-row input {
+    flex: 1;
+}
+
+.add-item-btn {
+    flex: 1;
+    border-radius: 14px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    font-weight: 600;
+}
+
+/* Cart */
+.cart-list {
+    margin-top: 10px;
+}
+
+/* Sticky Footer */
+.sale-footer {
+    position: sticky;
+    bottom: 0;
+    
+    padding: 14px 0px;
+   /* border-top: 1px solid var(--border);*/
+}
+
+
+
+.sale-summary p {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+/* Complete Button */
+
+.complete-btn {
+    width: 100%;
+    padding: 18px;
+    border-radius: 18px;
+    border: none;
+    background: linear-gradient(135deg,#16a34a,#15803d);
+      box-shadow: 0 10px 25px rgba(22,163,74,0.35);
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.sheet-close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+
+    width: 85px;
+    height: 38px;
+    border-radius: 18px;
+
+    border: none;
+    background: rgba(0,0,0,0.08);
+    color: #333;
+    font-size: 16px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.sheet-close:hover {
+    background: rgba(0,0,0,0.15);
+}
+
+body[data-theme="dark"] .sheet-close {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+}
+
+
+
+/* ================= PRODUCT SEARCH SUGGESTIONS ================= */
+
+/* Wrapper must be relative */
+.search-wrapper {
+    position: relative;
+}
+
+/* Floating dropdown */
+.suggestions-box {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+
+    margin-top:0px;
+
+    max-height: 200px;
+    overflow-y: auto;
+
+    z-index: 1000;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.suggestions-box:empty {
+    display: none;
+}
+
+/* Suggestion item */
+.suggestion-item {
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.2s ease;
+}
+
+.suggestion-item:hover {
+    background: rgba(37,99,235,0.08);
+}
+
+/* ================= SALE HEADER ================= */
+
+.sale-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+
+
+.sheet-close {
+    background: #e5e7eb;
+    color: #111;
+    font-weight: 600;
+    border-radius: 18px;
+    padding: 8px 16px;
+    border: none;
+}
+
+body[data-theme="dark"] .sheet-close {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.cart-wrapper {
+    min-height: 190px;
+    margin-top: 14px;
+    padding: 10px;
+    border-radius: 20px;
+
+    background: var(--bg);
+    border: 1px solid var(--border);
+}
+
+
+
+
+body[data-theme="dark"] .cart-wrapper {
+    background: rgba(255,255,255,0.03);
+}
+
+.cart-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.cart-item {
+    background: var(--card);
+    padding: 10px 14px;
+    border-radius: 14px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid var(--border);
+    font-size: 14px;
+}
+
+.cart-item button {
+    background: #fee2e2;
+    color: #b91c1c;
+    border-radius: 12px;
+    padding: 4px 8px;
+    font-size: 12px;
+}
+
+.discount-row {
+    display: flex;
+    gap: 10px;
+    margin-top: 12px;
+    align-items: center;
+}
+
+
+.sale-apply-btn {
+    border-radius: 18px;
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    color: white;
+}
+
+
+#discountType {
+    flex: 1.1;   /* small */
+    border-radius: 16px;
+}
+
+#saleDiscount {
+    flex: 1.5;   /* bigger */
+}
+
+.sale-apply-btn {
+    flex: 1;     /* keep balanced */
+}
+
+
+.discount-row button {
+    flex: 1;
+    border-radius: 14px;
+    background: #2563eb;
+    color: white;
+    font-weight: 600;
+}
+
+#paymentMethod {
+    margin-top: 14px;
+    border-radius: 18px;
+}
+
+
+
+body[data-theme="dark"] .sale-summary {
+    background: rgba(255,255,255,0.05);
+}
+
+.sale-summary p {
+    display: flex;
+    justify-content: space-between;
+    font-weight: 600;
+}
+
+.sale-summary {
+    width: calc(100%); /* expand beyond content padding */
+    
+
+    border-radius: 24px;
+    padding: 20px;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255,255,255,0.6);
+
+    box-shadow: 0 10px 25px rgba(15,23,42,0.08);
+
+    margin-bottom: 16px;
+}
+
+
+body[data-theme="dark"] .sale-summary {
+    background: rgba(30,30,30,0.85);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+.summary-top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 13px;
+    opacity: 0.8;
+}
+
+.invoice-label strong {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ================= SALE FORM BUTTONS ================= */
+
+.sale-btn {
+    border: none;
+    border-radius: 16px;
+    
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s cubic-bezier(.22,.9,.35,1);
+}
+
+/* Add Item Button (Primary POS Action) */
+
+
+.sale-add-btn {
+    flex: 1.5;
+    border-radius: 18px;
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    box-shadow: 0 6px 16px rgba(37,99,235,0.25);
+}
+
+#saleQuantity {
+    flex: 1;
+}
+
+
+.sale-add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(37,99,235,0.45);
+}
+
+.sale-add-btn:active {
+    transform: scale(0.96);
+}
+
+/* Apply Discount Button (Secondary) */
+.sale-apply-btn {
+    border-radius: 18px !important;
+    padding: 14px 20px;
+    background: #f3f4f6;
+    color: #111827;
+    border: 1px solid #e5e7eb;
+    background: linear-gradient(135deg,#3b82f6,#2563eb) !important;
+    box-shadow: 0 6px 16px rgba(37,99,235,0.25);
+}
+
+.sale-apply-btn:hover {
+    background: #e5e7eb;
+}
+
+body[data-theme="dark"] .sale-apply-btn {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+/* ================= SPLASH SCREEN ================= */
+
+.splash-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--bg);
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+.splash-screen.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Center Content */
+.splash-content {
+    text-align: center;
+    animation: splashFade 0.8s ease;
+}
+
+@keyframes splashFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo */
+.splash-content img {
+    height: 70px;
+    margin-bottom: 18px;
+}
+
+/* Text */
+.splash-text {
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 500;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+/* Premium Loader Line */
+.splash-loader {
+    width: 120px;
+    height: 3px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+body[data-theme="dark"] .splash-loader {
+    background: rgba(255,255,255,0.08);
+}
+
+.splash-loader::before {
+    content: "";
+    display: block;
+    height: 100%;
+    width: 40%;
+    background: linear-gradient(90deg,#2563eb,#3b82f6);
+    animation: splashLoad 1.2s infinite;
+}
+
+@keyframes splashLoad {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(300%); }
+}
+
+.splash-version {
+    font-size: 12px;
+    opacity: 0.5;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* ================= SUCCESS OVERLAY ================= */
+
+.success-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 6000;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+
+    background: rgba(0,0,0,0.25);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.25s ease;
+}
+
+.success-overlay.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-card {
+    width: 90%;
+    max-width: 360px;
+
+    background: var(--card);
+    border-radius: 22px;
+    padding: 28px 24px;
+    text-align: center;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,0.15);
+    border: 1px solid var(--border);
+
+    transform: scale(0.9);
+    transition: 0.25s ease;
+}
+
+.success-overlay.show .success-card {
+    transform: scale(1);
+}
+
+
+
+.success-card h3 {
+    font-size: 18px;
+    margin-bottom: 6px;
+}
+
+.success-card p {
+    font-size: 13px;
+    opacity: 0.7;
+    margin-bottom: 20px;
+}
+
+.success-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.success-btn {
+    flex: 1;
+    padding: 12px 0;
+    border-radius: 16px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Theme matched buttons */
+.success-btn.primary {
+    background: linear-gradient(135deg,var(--accent),#1e40af);
+    color: white;
+}
+
+.success-btn.outline {
+    background: rgba(0,0,0,0.06);
+    color: var(--text);
+}
+
+body[data-theme="dark"] .success-btn.outline {
+    background: rgba(255,255,255,0.08);
+}
+
+.success-btn:active {
+    transform: scale(0.96);
+}
+
+/* SUCCESS ICON CONTAINER */
+
+.success-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 20px auto;
+
+    border-radius: 50%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient(135deg,#16a34a,#15803d);
+
+    box-shadow: 0 12px 30px rgba(22,163,74,0.35);
+
+    animation: popIn 0.4s ease forwards;
+}
+
+/* SVG */
+
+.success-svg {
+    width: 42px;
+    height: 42px;
+    fill:none;
+    stroke: white;
+
+    transform: scale(0);
+    animation: tickAppear 0.4s 0.15s ease forwards;
+}
+
+/* Pop Animation */
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Tick Appear Animation */
+@keyframes tickAppear {
+    from {
+        transform: scale(0);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* ================= PRODUCTS TOP ACTION BUTTONS ================= */
+
+.products-actions {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.products-btn {
+    flex: 1;
+    padding: 14px 0;
+    border-radius: 28px;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s cubic-bezier(.22,.9,.35,1);
+}
+
+/* ADD PRODUCT - Solid Primary */
+.add-btn {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    color: white;
+    box-shadow: 0 8px 20px rgba(37,99,235,0.35);
+}
+
+.add-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 25px rgba(37,99,235,0.45);
+}
+
+.add-btn:active {
+    transform: scale(0.96);
+}
+
+/* PURCHASE - Soft Outline */
+.purchase-btn {
+    background: transparent;
+    color: var(--accent);
+    border: 1.5px solid var(--accent);
+}
+
+.purchase-btn:hover {
+    background: rgba(59,130,246,0.08);
+}
+
+.purchase-btn:active {
+    transform: scale(0.96);
+}
+
+/* ================= SALE HEADER TITLE WITH ICON ================= */
+
+.sale-title {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.sale-title-icon {
+    width: 22px;
+    height: 22px;
+    opacity: 0.9;
+    fill: var(--accent);
+}
+
+.sale-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 20px;
+
+    background: var(--card);
+    border-bottom: 1px solid var(--border);
+}
+
+.qty-chips {
+    display: flex;
+    gap: 7px;
+    align-items: center;
+}
+
+.qty-chips span {
+    min-width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 600;
+
+    background: rgba(37,99,235,0.10);
+    color: var(--accent);
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.qty-chips span:hover {
+    background: rgba(37,99,235,0.20);
+    transform: translateY(-1px);
+}
+
+.qty-chips span:active {
+    transform: scale(0.95);
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    gap: 15px;
+}
+
+.form-row label {
+    flex: 1;
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.form-row input {
+    flex: 2;
+    padding: 10px 14px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg);
+    font-size: 14px;
+}
+
+/* ================= PREMIUM MODAL BUTTONS ================= */
+
+.premium-actions {
+    display: flex;
+    gap: 14px;
+   
+}
+
+.modal-btn {
+    flex: 1;
+    padding: 16px 0;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: 0.25s cubic-bezier(.22,.9,.35,1);
+}
+
+/* Save Button (Primary) */
+.save-btn {
+    background: linear-gradient(135deg,#3b82f6,#2563eb);
+    color: white;
+    box-shadow: 0 10px 25px rgba(37,99,235,0.35);
+}
+
+.save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px rgba(37,99,235,0.45);
+}
+
+.save-btn:active {
+    transform: scale(0.96);
+}
+
+/* Cancel Button (Soft Glass Style) */
+.cancel-btn {
+    background: rgba(0,0,0,0.05);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.cancel-btn:hover {
+    background: rgba(0,0,0,0.08);
+}
+
+body[data-theme="dark"] .cancel-btn {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+}
+
+.toast {
+    position: fixed;
+    bottom: 50%;
+    left: 50%;
+    transform: translateX(-50%) scale(0.9);
+    padding: 12px 18px;
+    border-radius: 16px;
+    font-size: 14px;
+    font-weight: 600;
+    opacity: 0;
+    transition: 0.25s ease;
+    z-index: 5000;
+}
+
+.toast.success {
+    background: #16a34a;
+    color: white;
+}
+
+.toast.error {
+    background: #ef4444;
+    color: white;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+}
+
+.inventory-info-card {
+    margin-top: -12px;
+    margin-bottom: 10px;
+    padding: 18px;
+    border-radius: 18px;
+    background: rgba(37,99,235,0.08);
+    border: 1px solid rgba(37,99,235,0.2);
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 600;
+}
+
+.inventory-info-card {
+    animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-card h3 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+/* NAV SLIDE ANIMATION */
+
+.bottom-nav {
+    transition: transform 0.35s ease, opacity 0.25s ease;
+}
+
+.bottom-nav.nav-hidden {
+     transform: translate(-50%, 120%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-card h3 {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.modal-subtitle {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 2px;
+}
+
+body[data-theme="dark"] .modal-subtitle {
+    color: #9ca3af;
+}
+
+.modal-card input {
+    width: 100% !important;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-size: 14px;
+}
+
+.form-row label {
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #475569;
+}
+
+body[data-theme="dark"] .form-row label {
+    color: #cbd5e1;
+}
+
+/* Inventory modal suggestion full width */
+.modal-card .search-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.modal-card .suggestions-box {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin-top: 6px;
+
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    
+}
+
+.search-input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 18px;
+    border: 1px solid var(--border);
+    background: var(--card);
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 16px;
+}
+
+.search-input:focus {
+    border-color: var(--accent);
+}
+
+/* Ledger Section Top Spacing */
+
+#salesScreen .section-top  {
+    margin-top: -20px;  /* adjust 8–16px as you like */
+}
+
+/* ================= CUSTOM INVOICE SHEET ================= */
+
+.invoice-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    background:var(--card);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+}
+
+.invoice-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.invoice-sheet {
+    width: 100%;
+    max-width: 520px;
+    height: 92vh;
+
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border-radius: 28px 28px 0 0;
+    border: 1px solid rgba(255,255,255,0.6);
+
+    display: flex;
+    flex-direction: column;
+
+    transform: translateY(100%);
+    transition: transform 0.3s cubic-bezier(.22,.9,.35,1);
+}
+
+.invoice-overlay.active .invoice-sheet {
+    transform: translateY(0);
+}
+
+/* Dark mode support */
+body[data-theme="dark"] .invoice-sheet {
+    background: rgba(30,30,30,0.85);
+    border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* Topbar */
+.invoice-topbar {
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.invoice-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.invoice-id {
+    font-size: 13px;
+    opacity: 0.7;
+}
+
+/* Close button */
+.invoice-close {
+    border: none;
+    background: rgba(0,0,0,0.08);
+    padding: 8px 16px;
+    border-radius: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+body[data-theme="dark"] .invoice-close {
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+/* Scrollable Content */
+.invoice-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+/* Footer */
+.invoice-footer {
+    padding: 16px;
+    display: flex;
+    gap: 10px;
+
+    border-top: 1px solid var(--border);
+}
+
+/* Buttons */
+.invoice-btn {
+    flex: 1;
+    padding: 14px;
+    border-radius: 18px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.invoice-btn.whatsapp {
+    background: linear-gradient(135deg,#25d366,#128c7e);
+    color: white;
+}
+
+.invoice-btn.delete {
+    background: rgba(255, 0, 0, 0.671);
+    color: #000000;
+    border: 1px solid rgba(239,68,68,0.25);
+}
+
+.invoice-btn:hover {
+    transform: translateY(-2px);
+}
+
+.invoice-btn:active {
+    transform: scale(0.96);
+}
+
+/* ================= PREMIUM LEDGER SEARCH ================= */
+
+#salesSearch {
+    border: 1.8px solid rgba(37, 100, 235, 0.849);
+    box-shadow: 0 8px 20px rgba(37,99,235,0.10);
+    transition: 0.25s cubic-bezier(.22,.9,.35,1);
+}
+
+/* Focus State */
+#salesSearch:focus {
+    border: 1.8px solid var(--accent);
+    box-shadow: 
+        0 10px 25px rgba(37,99,235,0.25),
+        0 0 0 4px rgba(37,99,235,0.12);
+    
+}
+
+/* Dark Mode Version */
+body[data-theme="dark"] #salesSearch {
+    background: rgba(255,255,255,0.05);
+    border: 1.8px solid rgba(59,130,246,0.35);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+}
+
+body[data-theme="dark"] #salesSearch:focus {
+    box-shadow:
+        0 12px 30px rgba(59,130,246,0.15),
+        0 0 0 4px rgba(59,130,246,0.10);
+}
+
+/* ================= BODY LOCK WHEN MODAL OPEN ================= */
+
+body.modal-open {
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* ================= HEADER SLIDE HIDE ================= */
+
+/* ================= HEADER SLIDE UP (MATCHING NAV SLIDE DOWN) ================= */
+
+.app-header {
+    transition: transform 0.35s ease, opacity 0.25s ease;
+    will-change: transform, opacity;
+}
+
+.app-header.header-hidden {
+    transform: translateY(-120%);   /* 🔥 header moves upward */
+    opacity: 0;                     /* 🔥 fades same as nav */
+    pointer-events: none;
+}
